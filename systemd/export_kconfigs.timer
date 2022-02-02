@@ -1,0 +1,11 @@
+[Unit]
+Description=Export kubernetes configs
+
+[Timer]
+Unit=export_kconfigs.service
+OnCalendar=*-*-* 12:00:00
+RandomizedDelaySec=300
+Persistent=true
+
+[Install]
+WantedBy=timers.target

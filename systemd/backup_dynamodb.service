@@ -1,0 +1,10 @@
+[Unit]
+Description=Backup dynamoDB database
+Wants=backup_dynamodbs.timer
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/dynamoDB.sh
+
+[Install]
+WantedBy=multi-user.target

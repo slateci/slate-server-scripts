@@ -1,0 +1,10 @@
+[Unit]
+Description=Backup dynamoDB database
+
+[Timer]
+Unit=backup_dynamodb.service
+OnCalendar=Sun *-*-* 00:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

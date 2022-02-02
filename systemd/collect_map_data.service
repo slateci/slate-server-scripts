@@ -1,0 +1,10 @@
+[Unit]
+Description=Update cluster GPS locations
+Wants=collect_map_data.timer
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/collect_map_data.sh
+
+[Install]
+WantedBy=multi-user.target

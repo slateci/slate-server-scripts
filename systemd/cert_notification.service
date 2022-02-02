@@ -1,0 +1,10 @@
+[Unit]
+Description=Update cluster availability
+Wants=cert_notification.timer
+
+[Service]
+Type=oneshot
+ExecStart=home/centos/slate-checkmk/slate-clusters-cert-notification.sh
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,11 @@
+[Unit]
+Description=Update cluster GPS locations
+
+[Timer]
+Unit=collect_map_data.service
+OnCalendar=*-*-* 00:00:00
+RandomizedDelaySec=300
+Persistent=true
+
+[Install]
+WantedBy=timers.target

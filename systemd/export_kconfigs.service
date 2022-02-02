@@ -1,0 +1,10 @@
+[Unit]
+Description=Export kubernetes configurations
+Wants=export_kconfigs.timer
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/export_kconfigs.sh
+
+[Install]
+WantedBy=multi-user.target
