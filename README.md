@@ -25,5 +25,5 @@ This scripts checks whether the clusters are available and updates the api servi
 12,32,52 * * * * /home/centos/slate-server-scripts/monitor_clusters.sh
 0 0 * * * /home/centos/slate-server-scripts/collect_map_data.sh
 0 12 * * 1 /home/centos/slate-server-scripts/dynamoDB.sh
-0 12 * * 5 /home/centos/slate-checkmk/slate-clusters-cert-notification.sh &> /home/centos/slate-checkmk/out/slate-clusters-cert-notification.out
+5 12 * * * /home/centos/slate-checkmk/slate-clusters-cert-notification.sh &> /home/centos/slate-checkmk/out/slate-clusters-cert-notification.out
 ```
