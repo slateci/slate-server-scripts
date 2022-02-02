@@ -4,8 +4,8 @@ Release: 1%{?dist}
 Summary: Scripts for slate api server
 License: Apache License
 URL: https://github.com/slateci/slate-server-scripts
-
 Source: %{name}-%{version}.tar.gz
+BuildRequires: systemd
 
 %define _debugsource_template %{nil}
 
@@ -25,6 +25,10 @@ install collect_map_data.sh $RPM_BUILD_ROOT/%{_sbindir}
 install dynamoDB.sh $RPM_BUILD_ROOT/%{_sbindir}/
 install export_kconfigs.sh $RPM_BUILD_ROOT/%{_sbindir}/
 install monitor_clusters.sh $RPM_BUILD_ROOT/%{_sbindir}/
+mkdir -p $RPM_BUILD_ROOT/%{_unitdir}
+install -m 644 *.service $RPM_BUILD_ROOT/%{_unitdir}
+install -m 644 *.timer $RPM_BUILD_ROOT/%{_unitdir}
+
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -34,6 +38,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_sbindir}/dynamoDB.sh
 %{_sbindir}/export_kconfigs.sh
 %{_sbindir}/monitor_clusters.sh
+/%{_unitdir}/*
 
 
 %changelog
