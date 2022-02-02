@@ -14,3 +14,4 @@ then
 fi
 mock $EXTRA_OPTS --buildsrpm --spec slate-server-scripts.spec --sources $TAR_DIR.tar.gz --resultdir=.
 mock $EXTRA_OPTS *.src.rpm  --resultdir=. 
+rm -f $TAR_DIR.tar.gz
