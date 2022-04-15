@@ -3,9 +3,13 @@ FROM centos:7
 
 # Package installs/updates:
 RUN yum install epel-release -y
-RUN yum install less \
+RUN yum install bind-utils \
+    less \
+    net-tools \
+    openssh-clients \
     python-jsonpointer \
     s3cmd \
+    unzip \
     which -y
 RUN yum clean all && rm -rf /var/cache/yum
 
@@ -22,5 +26,5 @@ RUN chmod +x ./install-aws-cli.sh && \
 WORKDIR /slate
 
 # Copy in all scripts:
-COPY ./scripts .
+COPY ./scripts ./scripts
 RUN chmod +x ./scripts/*.sh
