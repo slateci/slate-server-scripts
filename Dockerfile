@@ -3,7 +3,7 @@ FROM centos:7
 
 # Package installs/updates:
 RUN yum install epel-release -y
-RUN yum less \
+RUN yum install less \
     python-jsonpointer \
     s3cmd \
     which -y
