@@ -1,4 +1,4 @@
-name: "Dockle and Trivy"
+name: "Docker: Lint and Scan"
 
 on:
   push:
@@ -33,7 +33,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: slate-api-scripts
+          name: image
           path: /tmp/image.tar
 
   lint:
