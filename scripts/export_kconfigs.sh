@@ -1,13 +1,10 @@
 #!/bin/sh
 
-source /etc/slate/slate.conf
-
-export AWS_ACCESS_KEY_ID=$awsAccessKey
-export AWS_SECRET_ACCESS_KEY=$awsSecretKey
+source /slate/slate.conf
 
 
-ENDPOINT="https://dynamodb.us-east-2.amazonaws.com"
-REGION="us-east-2"
+ENDPOINT=$awsEndpoint
+REGION=$awsRegion
 CONFIGDIR="configs"
 CONFIGTMPDIR="configs-tmp"
 

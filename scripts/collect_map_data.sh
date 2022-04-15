@@ -10,4 +10,4 @@ fi
 LOCATIONS=$(echo "$CLUSTERS" | jq '{"clusters":[.[] | .metadata | select(.location | length > 0) | {"name":.name,"organization":.owningOrganization,"location":.location[]} | {"name":.name,"organization":.organization,"location":{"latitude":.location.lat,"longitude":.location.lon}}]}')
 echo "$LOCATIONS" > map_data
 
-s3cmd --no-progress --host=s3.amazonaws.com --access_key=${SLATE_awsAccessKey} --secret_key=${SLATE_awsSecretKey} -P put map_data s3://slate-geoip/map_data > /dev/null
+s3cmd --no-progress --host=s3.amazonaws.com --access_key=${AWS_ACCESS_KEY_ID} --secret_key=${AWS_SECRET_ACCESS_KEY} -P put map_data s3://slate-geoip/map_data > /dev/null
