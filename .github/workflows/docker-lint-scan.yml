@@ -3,9 +3,7 @@ name: "Docker: Lint and Scan"
 on:
   push:
     branches:
-#      - develop
-#      - master
-      - feature/1-containerize-slate-server-scripts
+      - banana
 
 env:
   DOCKER_TAG: slate-api-scripts:local
