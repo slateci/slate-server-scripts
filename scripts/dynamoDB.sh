@@ -1,9 +1,6 @@
 #!/bin/bash
 
-source /etc/slate/slate.conf
-
-export AWS_ACCESS_KEY_ID=$awsAccessKey
-export AWS_SECRET_ACCESS_KEY=$awsSecretKey
+source /slate/slate.conf
 
 echo "Listing Tables" > dynamo_out.log
 aws dynamodb list-tables --region us-east-2 >> dynamo_out.log
