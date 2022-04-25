@@ -1,29 +1,21 @@
 # Scripts and cron tab for the API server
 
-This repository contains the scripts that run on the API server as cron jobs. These scripts are necessary for the correct functioning and monitoring of the API server.
+This repository contains the scripts that run cron jobs in Kubernetes. These scripts are necessary for the correct functioning and monitoring of the API server.
 
-## collect_map_data
+## Scripts
 
-This script collects the GPS locations of the sites and makes them avilable to the website from page map.
+### collect_map_data
 
-## dynamoDB
+This script collects the GPS locations of the sites and makes them available to the website from page map.
+
+### dynamoDB
 
 This script backs up the database. The output is used by checkmk script to alert if the backup was not executed.
 
-## export_kconfigs
+### export_kconfigs
 
 This script collects the kubernetes configurations, which are then used by various script, including the checkmk ones, to monitoring the status of the infrastructure.
 
-## monitor_clusters
+### monitor_clusters
 
 This scripts checks whether the clusters are available and updates the api service accordingly so that the portal can show which clusters are active or inactive.
-
-## crontab
-
-```
-0 12 * * * cd /home/centos/kconf_extraction &&  /home/centos/slate-server-scripts/export_kconfigs.sh
-12,32,52 * * * * /home/centos/slate-server-scripts/monitor_clusters.sh
-0 0 * * * /home/centos/slate-server-scripts/collect_map_data.sh
-0 12 * * 1 /home/centos/slate-server-scripts/dynamoDB.sh
-5 12 * * * /home/centos/slate-checkmk/slate-clusters-cert-notification.sh &> /home/centos/slate-checkmk/out/slate-clusters-cert-notification.out
-```
