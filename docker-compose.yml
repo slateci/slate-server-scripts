@@ -9,11 +9,11 @@ services:
       dockerfile: ./resources/docker/Dockerfile
       target: local-stage
     environment:
-      AWS_SECRET_ACCESS_KEY: 'XXXX'
-      AWS_ACCESS_KEY_ID: 'XXXX'
-      SLATE_API_ENDPOINT: 'XXXX'
-      SLATE_API_PORT: 'XXXX'
-      SLATE_API_TOKEN: 'XXXX'
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      SLATE_API_ENDPOINT: ${SLATE_API_ENDPOINT}
+      SLATE_API_PORT: ${SLATE_API_PORT}
+      SLATE_API_TOKEN: ${SLATE_API_TOKEN}
     volumes:
       - ./scripts:/slate/scripts
       - ./resources:/resources
