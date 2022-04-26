@@ -20,6 +20,10 @@ This script collects the kubernetes configurations, which are then used by vario
 
 This scripts checks whether the clusters are available and updates the api service accordingly so that the portal can show which clusters are active or inactive.
 
+### test
+
+This script exists for testing Kubernetes and the CronJob object.
+
 ## Local Development with Docker Compose
 
 > **_IMPORTANT:_** this section requires familiarity with [Running the Server](https://github.com/slateci/slate-client-server/blob/master/resources/docs/server_running.md).

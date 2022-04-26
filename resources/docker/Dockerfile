@@ -71,4 +71,4 @@ COPY ./scripts ./scripts
 RUN chmod +x ./scripts/*.sh
 
 # Change working directory:
-WORKDIR /slate/scripts
+WORKDIR /
