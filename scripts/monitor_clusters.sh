@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 clusters=$(curl -s https://${SLATE_API_ENDPOINT}:${SLATE_API_PORT}/v1alpha3/clusters?token=${SLATE_API_TOKEN} \
 | sed -e 's|{|{\

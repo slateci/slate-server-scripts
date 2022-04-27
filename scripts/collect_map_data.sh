@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-source /slate/slate.conf
+source "${SLATE_API_CONF}"
 
 CLUSTERS=$(curl -s https://${SLATE_API_ENDPOINT}:${SLATE_API_PORT}/v1alpha3/clusters?token=${SLATE_API_TOKEN} | jq '.items')
 if [ "$?" -ne 0 ]; then

@@ -29,11 +29,11 @@ RUN chmod +x ./install-aws-cli.sh && \
     ./install-aws-cli.sh && \
     rm ./install-aws-cli.sh
 
-# Change working directory:
-WORKDIR /slate
+# Make root slate directory:
+RUN mkdir /slate
 
-# Volumes:
-VOLUME [ "/slate" ]
+# Change working directory:
+WORKDIR /
 
 # Run once the container has started:
 ENTRYPOINT [ "/bin/bash" ]

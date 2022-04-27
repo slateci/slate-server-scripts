@@ -1,7 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-source /slate/slate.conf
-
+source "${SLATE_API_CONF}"
 
 ENDPOINT=$awsEndpoint
 REGION=$awsRegion

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source /slate/slate.conf
+source "${SLATE_API_CONF}"
 
 echo "Listing Tables" > dynamo_out.log
 aws dynamodb list-tables --region us-east-2 >> dynamo_out.log

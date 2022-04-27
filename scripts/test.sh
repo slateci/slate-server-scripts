@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-source /slate/slate.conf
+source "${SLATE_API_CONF}"
 
 echo "SLATE API: https://SLATE_API_ENDPOINT:${SLATE_API_PORT}"
 

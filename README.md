@@ -31,8 +31,8 @@ This script exists for testing Kubernetes and the CronJob object.
 This local process is meant to mimic our Kubernetes cluster out on the Google Kubernetes Engine (GKE). There each script is instantiated as a Cron Job using the [cronjobs.yml](https://github.com/slateci/helm-slate-api/blob/develop/templates/cronjobs.yml) template.
 
 This template has the following available to it:
-* A copy of the `/slate.conf` file.
-* The environmental variables defined in `.env.tmpl`.
+* A copy of `resources/docker/conf/slate.conf` mounted to `${SLATE_API_CONF}`.
+* The Docker environmental variables defined in `.env.tmpl` as full system-level environmental variables.
 
 ### Requirements
 
@@ -67,19 +67,19 @@ slate_api_scripts    | Copying clean slate.conf...
 
 ### Test the API Scripts
 
-While `docker-compose` is still running attach to the `slate_api_scripts` container and test the scripts in `/slate/scripts`:
+While `docker-compose` is still running attach to the `slate_api_scripts` container and run a script(s) in `/slate/scripts`:
 
 ```shell
 $ docker exec -it slate_api_scripts bash
-[root@d614a7bf3483 slate]# cd scripts
-[root@d614a7bf3483 scripts]# ./example-script.sh
+[root@d614a7bf3483 slate]# cd /slate/scripts
+[root@d614a7bf3483 scripts]# ./test.sh
 ...
 ...
 ```
 
 ### Teardown
 
-In the terminal session running `docker-compose up` type `CTRL + C` to stop all existing containers. Finally teardown using one of the following options:
+In the terminal session running `docker-compose up` type `CTRL + C` to stop all existing containers. Finally, teardown using one of the following options:
 
 * Leave the associated images, volumes, and networks on your machine by executing:
 
