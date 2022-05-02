@@ -2,22 +2,24 @@
 
 source "${SLATE_API_CONF}"
 
+REGION=$awsRegion
+
 echo "Listing Tables" > dynamo_out.log
-aws dynamodb list-tables --region us-east-2 >> dynamo_out.log
+aws dynamodb list-tables --region ${REGION} >> dynamo_out.log
 
 ONE_MONTH_AGO=$((`date +%s` - 1209600))
 
 echo "Listing Backups Within Two Weeks" >> dynamo_out.log
-for i in $(aws dynamodb list-backups --region us-east-2 --time-range-lower-bound $ONE_MONTH_AGO | grep BackupCreationDateTime  | awk '{print $2}'  | tr -d ',' ); do date -d @$i; done >> dynamo_out.log
+for i in $(aws dynamodb list-backups --region ${REGION} --time-range-lower-bound $ONE_MONTH_AGO | grep BackupCreationDateTime  | awk '{print $2}'  | tr -d ',' ); do date -d @$i; done >> dynamo_out.log
 
 echo "Creating New Backup" >> dynamo_out.log
-aws dynamodb create-backup --table-name SLATE_clusters --backup-name SLATE_clusters-VolumeFeature  --region us-east-2 >> dynamo_out.log
+aws dynamodb create-backup --table-name SLATE_clusters --backup-name SLATE_clusters-VolumeFeature  --region ${REGION} >> dynamo_out.log
 RESULT=$?
 
-for i in CONNECT_groups CONNECT_users SLATE_groups SLATE_instances SLATE_moncreds SLATE_secrets SLATE_users SLATE_volumes; do aws dynamodb create-backup --table-name $i --backup-name $i-VolumeFeature  --region us-east-2; done >> dynamo_out.log
+for i in CONNECT_groups CONNECT_users SLATE_groups SLATE_instances SLATE_moncreds SLATE_secrets SLATE_users SLATE_volumes; do aws dynamodb create-backup --table-name $i --backup-name $i-VolumeFeature  --region ${REGION}; done >> dynamo_out.log
 
 echo "Listing All Backups Within Two Weeks" >> dynamo_out.log
-for i in $(aws dynamodb list-backups --region us-east-2 --time-range-lower-bound $ONE_MONTH_AGO | grep BackupCreationDateTime  | awk '{print $2}'  | tr -d ',' ); do date -d @$i; done >> dynamo_out.log
+for i in $(aws dynamodb list-backups --region ${REGION} --time-range-lower-bound $ONE_MONTH_AGO | grep BackupCreationDateTime  | awk '{print $2}'  | tr -d ',' ); do date -d @$i; done >> dynamo_out.log
 
 LAST_DATE=`tail dynamo_out.log -n 1`
 DATE_DIFF=$(( `date +%s` - `date --date="$LAST_DATE" +%s`))
