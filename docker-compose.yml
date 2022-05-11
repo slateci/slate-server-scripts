@@ -17,5 +17,6 @@ services:
       SLATE_API_TOKEN: ${SLATE_API_TOKEN}
     tty: true
     volumes:
+      - ./resources/docker/conf:/slate/conf
       - ./scripts:/slate/scripts
       - ./resources:/resources
