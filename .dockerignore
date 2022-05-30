@@ -1,0 +1,12 @@
+
+# IDE Metadata
+.idea/
+.vscode/
+.vs/
+
+# Git Related Items
+.git*
+
+# Other
+LICENSE
+README.md
