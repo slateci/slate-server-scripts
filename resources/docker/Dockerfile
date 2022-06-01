@@ -11,6 +11,7 @@ FROM ${baseimage} as local-stage
 # Package installs/updates:
 RUN yum install epel-release -y
 RUN yum install bind-utils \
+    jq \
     less \
     net-tools \
     openssh-clients \
