@@ -15,5 +15,5 @@ s3cmd --no-progress --host=s3.amazonaws.com --access_key=${AWS_ACCESS_KEY_ID} --
 
 DATE=`date`
 
-echo "0 SLATE-site-collectmapdata - Map data collect script last ran on $DATE" >> collect_map_data.log
+echo "0 SLATE-site-collectmapdata - Map data collect script last ran on $DATE" > collect_map_data.log
 aws s3 cp collect_map_data.log $AWS_CHECKMK_BUCKET
