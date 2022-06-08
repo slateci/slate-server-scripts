@@ -2,6 +2,12 @@
 
 source "${SLATE_API_CONF}"
 
+if [[ "$DEPLOYMENT_ENVIRONMENT" != "production" ]]; then
+    echo Script will run only on production
+    exit 0
+fi
+
+
 CLUSTERS=$(curl -s ${SLATE_API_ENDPOINT}:${SLATE_API_PORT}/v1alpha3/clusters?token=${SLATE_API_TOKEN} | jq '.items')
 if [ "$?" -ne 0 ]; then
 	echo "Fetching cluster data failed" 1>&2
