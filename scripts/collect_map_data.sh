@@ -20,6 +20,7 @@ echo "$LOCATIONS" > map_data
 s3cmd --no-progress --host=s3.amazonaws.com --access_key=${AWS_ACCESS_KEY_ID} --secret_key=${AWS_SECRET_ACCESS_KEY} -P put map_data s3://slate-geoip/map_data > /dev/null
 
 DATE=`date`
+CHECKMK_TAG=${DEPLOYMENT_ENVIRONMENT:0:4}
 
-echo "0 SLATE-site-collectmapdata - Map data collect script last ran on $DATE" > collect_map_data.log
+echo "0 SLATE-$CHECKMK_TAG-collectmapdata - Map data collect script last ran on $DATE" > collect_map_data.log
 aws s3 cp collect_map_data.log $AWS_CHECKMK_BUCKET
