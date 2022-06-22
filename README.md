@@ -1,5 +1,7 @@
 # Scripts for the API server
 
+[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)
+
 This repository contains the scripts that run cron jobs in Kubernetes. These scripts are necessary for the correct functioning and monitoring of the API server.
 
 ## Descriptions
