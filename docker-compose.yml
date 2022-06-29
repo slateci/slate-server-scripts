@@ -22,6 +22,7 @@ services:
       SLATE_API_ENDPOINT: ${SLATE_API_ENDPOINT}
       SLATE_API_PORT: ${SLATE_API_PORT}
       SLATE_API_TOKEN: ${SLATE_API_TOKEN}
+      MAILGUN_KEY: ${MAILGUN_KEY}
     tty: true
     volumes:
       - ./resources/docker/conf:/slate/conf
