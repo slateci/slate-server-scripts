@@ -15,5 +15,5 @@ curl -s -d "$REQUEST" ${SLATE_API_ENDPOINT}:${SLATE_API_PORT}/v1alpha3/multiplex
 DATE=`date`
 CHECKMK_TAG=${DEPLOYMENT_ENVIRONMENT:0:4}
 
-echo "0 SLATE-$CHECKMK_TAG-monitorclusters - Monitor clusters script last ran on $DATE" > monitor_clusters.log
-aws s3 cp monitor_clusters.log $AWS_CHECKMK_BUCKET
+echo "0 SLATE-$CHECKMK_TAG-monitorclusters - Monitor clusters script last ran on $DATE" > monitor_clusters.out
+aws s3 mv monitor_clusters.out $AWS_CHECKMK_BUCKET

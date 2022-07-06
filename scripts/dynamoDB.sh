@@ -15,7 +15,7 @@ aws dynamodb list-tables
 
 ONE_MONTH_AGO=$((`date +%s` - 1209600))
 
-echo "Listing Backups Within Two Weeks" >> dynamo_out.log
+echo "Listing Backups Within Two Weeks"
 for i in $(aws dynamodb list-backups --time-range-lower-bound $ONE_MONTH_AGO | grep BackupCreationDateTime  | awk '{print $2}'  | tr -d ',' ); do echo $i; done
 
 echo "Creating New Backup"
@@ -31,13 +31,13 @@ LAST_DATE=${i:1:-1}
 DATE_DIFF=$(( `date +%s` - `date --date="$LAST_DATE" +%s`))
 
 if [ $DATE_DIFF -lt 302400 ]; then
-    echo "0 SLATE-$CHECKMK_TAG-dynamoDB-backup - Backup successful ($LAST_DATE)" > dynamoDB.log
+    echo "0 SLATE-$CHECKMK_TAG-dynamoDB-backup - Backup successful ($LAST_DATE)" > dynamoDB.out
 else
-    echo "2 SLATE-$CHECKMK_TAG-dynamoDB-backup - Backup failed ($LAST_DATE)" > dynamoDB.log
+    echo "2 SLATE-$CHECKMK_TAG-dynamoDB-backup - Backup failed ($LAST_DATE)" > dynamoDB.out
 fi
 
 AWS_ACCESS_KEY_ID=$S3_AWS_ACCESS_KEY_ID
 AWS_SECRET_ACCESS_KEY=$S3_AWS_SECRET_ACCESS_KEY
 AWS_DEFAULT_REGION=$S3_AWS_DEFAULT_REGION
 
-aws s3 cp dynamoDB.log $AWS_CHECKMK_BUCKET
+aws s3 mv dynamoDB.out $AWS_CHECKMK_BUCKET

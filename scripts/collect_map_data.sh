@@ -22,5 +22,5 @@ s3cmd --no-progress --host=s3.amazonaws.com --access_key=${AWS_ACCESS_KEY_ID} --
 DATE=`date`
 CHECKMK_TAG=${DEPLOYMENT_ENVIRONMENT:0:4}
 
-echo "0 SLATE-$CHECKMK_TAG-collectmapdata - Map data collect script last ran on $DATE" > collect_map_data.log
-aws s3 cp collect_map_data.log $AWS_CHECKMK_BUCKET
+echo "0 SLATE-$CHECKMK_TAG-collectmapdata - Map data collect script last ran on $DATE" > collect_map_data.out
+aws s3 mv collect_map_data.out $AWS_CHECKMK_BUCKET
