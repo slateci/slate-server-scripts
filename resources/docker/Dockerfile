@@ -8,15 +8,28 @@ ARG baseimage=centos:7
 #######################################
 FROM ${baseimage} as local-stage
 
+ARG kubectlversion=1.18.2
+
+# Set up custom yum repos:
+COPY ./resources/docker/yum.repos.d/kubernetes.repo /etc/yum.repos.d/kubernetes.repo
+
+RUN echo "$baseimage" > output1.txt
+RUN echo "$kubectlversion" > output2.txt
+
 # Package installs/updates:
 RUN yum install epel-release -y
 RUN yum install bind-utils \
+    jq \
+    kubectl-$kubectlversion \
     less \
     net-tools \
     openssh-clients \
+    openssl \
     python-jsonpointer \
     s3cmd \
     unzip \
+    python3 \
+    python36-requests \
     which -y
 RUN yum clean all && rm -rf /var/cache/yum
 
