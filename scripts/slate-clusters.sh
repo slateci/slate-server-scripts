@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd "$( dirname "$(readlink -f "${BASH_SOURCE[0]}" )" )"
+
 CHECKMK_TAG=${DEPLOYMENT_ENVIRONMENT:0:4}
 
 export CHECKMK_TAG
