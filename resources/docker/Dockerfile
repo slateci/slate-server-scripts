@@ -54,27 +54,7 @@ ENTRYPOINT [ "/bin/bash" ]
 #######################################
 ## Release Stage                      #
 #######################################
-FROM ${baseimage} as release-stage
-
-# Package installs/updates:
-RUN yum install epel-release -y
-RUN yum install bind-utils \
-    less \
-    net-tools \
-    openssh-clients \
-    python-jsonpointer \
-    s3cmd \
-    unzip \
-    which -y
-RUN yum clean all && rm -rf /var/cache/yum
-
-# Change working directory:
-WORKDIR /usr/local/bin
-
-# Install AWS CLI
-COPY --from=local-stage /usr/local/aws-cli /usr/local/aws-cli
-RUN ln -s /usr/local/aws-cli/v2/current/bin/aws aws && \
-    ln -s /usr/local/aws-cli/v2/current/bin/aws_completer aws_completer
+FROM local-stage as release-stage
 
 # Change working directory:
 WORKDIR /slate
